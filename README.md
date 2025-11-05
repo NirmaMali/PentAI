@@ -24,7 +24,13 @@ npm i
 ```
 
 ### 2. Configure Environment
-Create `.env.local` with the API keys you plan to use:
+Copy `.env.example` to `.env.local` and add your API keys:
+
+```bash
+cp .env.example .env.local
+```
+
+Then edit `.env.local` with the API keys you plan to use:
 
 ```
 # OpenRouter (recommended for most free models)
@@ -32,6 +38,10 @@ OPENROUTER_API_KEY=your_openrouter_key_here
 
 # Gemini (for Gemini models and image input)
 GOOGLE_GENERATIVE_AI_API_KEY=your_gemini_key_here
+
+# Supabase (required for authentication features)
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### 3. Run Development Server
@@ -46,8 +56,10 @@ npm run dev
 |----------|-------------|--------------|
 | `OPENROUTER_API_KEY` | API key from [OpenRouter](https://openrouter.ai) | OpenRouter models |
 | `GOOGLE_GENERATIVE_AI_API_KEY` | API key from Google AI Studio | Gemini models |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL from [Supabase Dashboard](https://supabase.com/dashboard) | Authentication features |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key from [Supabase Dashboard](https://supabase.com/dashboard) | Authentication features |
 
-> **Note**: You can also provide API keys at runtime through the UI's Settings panel.
+> **Note**: You can also provide AI provider API keys at runtime through the UI's Settings panel. However, Supabase credentials must be configured via environment variables for authentication to work.
 
 ## 📁 Project Structure
 
