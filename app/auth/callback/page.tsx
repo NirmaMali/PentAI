@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { supabase, isSupabaseConfigured } from '@/lib/supabaseClient';
 import { Loader2 } from 'lucide-react';
 
 export default function AuthCallback() {
@@ -11,6 +11,13 @@ export default function AuthCallback() {
   useEffect(() => {
     const handleAuthCallback = async () => {
       try {
+        // Check if Supabase is configured
+        if (!isSupabaseConfigured() || !supabase) {
+          console.error('Supabase is not configured');
+          router.push('/?error=auth_not_configured');
+          return;
+        }
+
         // Handle the OAuth callback
         const { data, error } = await supabase.auth.getSession();
         
