@@ -8,8 +8,8 @@ This project is ready to deploy to Vercel (Next.js App Router). Follow these ste
 
    - `OPENROUTER_API_KEY` — OpenRouter API key (optional, used for OpenRouter models)
    - `GOOGLE_GENERATIVE_AI_API_KEY` — Google Generative API / Gemini key (optional, used for Gemini)
-   - `SUPABASE_URL` — (if using Supabase features)
-   - `SUPABASE_ANON_KEY` — (if using Supabase features)
+   - `NEXT_PUBLIC_SUPABASE_URL` — Supabase project URL (required for authentication features)
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase anonymous key (required for authentication features)
 
 4. Build settings: Vercel will auto-detect Next.js. The project includes a `vercel-build` script and `vercel.json` to help Vercel detect the app. No custom build command is necessary (the default `npm run build` or `yarn build` will be used).
 
