@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button";
 import { Github, Loader2 } from "lucide-react";
 import Image from "next/image";
-import { supabase } from '@/lib/supabaseClient';
+import { supabase, isSupabaseConfigured } from '@/lib/supabaseClient';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -20,6 +20,12 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
     try {
       setIsLoading(true);
       setLoginMethod(provider);
+      
+      // Check if Supabase is configured
+      if (!isSupabaseConfigured() || !supabase) {
+        alert('Authentication is not configured. Please contact the administrator.');
+        return;
+      }
       
       // Create a more explicit redirect URL
       const redirectUrl = `${window.location.origin}/auth/callback`;
